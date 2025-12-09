@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" style="scroll-behavior: smooth;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RAPAT EVALUASI</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
     <header>
         <div class="container">
             <div class="logo">BPS <strong>PROVINSI SUMATERA UTARA</strong></div>
-            <nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="nav-menu">
                 <ul>
                     <li><a href="#home">Beranda</a></li>
                     <li><a href="#kelengkapan">Kelengkapan Peserta</a></li>
@@ -38,16 +44,25 @@
             
             <div class="grid-materi">
                 <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
                     <h4>Surat Pemanggilan</h4>
                     <p>Undangan resmi untuk pemanggilan peserta</p>
                     <a href="https://drive.google.com/file/d/1bYaE152whxSVvBNPrR_LoWfdjvhC-g0P/view?usp=sharing" class="btn-download">Lihat</a>
                 </div>
                 <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
                     <h4>Daftar Peserta</h4>
                     <p>Daftar lengkap seluruh peserta</p>
                     <a href="http://s.bps.go.id/Biodata_Peserta_Rapat_MBG" class="btn-download">Lihat</a>
                 </div>
                 <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
                     <h4>Alokasi</h4>
                     <p>Alokasi denah tempat duduk</p>
                     <a href="https://drive.google.com/file/d/1hf9fWTf6X6-eWcdByS4n-J46JWULVnQZ/view?usp=sharing" class="btn-download">Lihat</a>
@@ -57,144 +72,190 @@
     </section>
 
     <section id="materi" class="section-dokumentasi">
-    <div class="container">
-        <h5>Arsip Kegiatan</h5>
-        <p>Arsip dokumen lengkap seluruh kegiatan Rapat Evaluasi.</p>
+        <div class="container">
+            <h5>Arsip Kegiatan</h5>
+            <p>Arsip dokumen lengkap seluruh kegiatan Rapat Evaluasi.</p>
 
-        <div class="tab-nav">
-            <button class="tab-link active" onclick="openTab(event, 'TabMateri')">Materi</button>
-            <button class="tab-link" onclick="openTab(event, 'TabDokumentasi')">Dokumentasi</button>
-            <button class="tab-link" onclick="openTab(event, 'TabPaparan')">Notulen</button>
+            <div class="tab-nav">
+                <button class="tab-link active" onclick="openTab(event, 'TabMateri')">
+                    <i class="fas fa-file-alt"></i> Materi
+                </button>
+                <button class="tab-link" onclick="openTab(event, 'TabDokumentasi')">
+                    <i class="fas fa-images"></i> Dokumentasi
+                </button>
+                <button class="tab-link" onclick="openTab(event, 'TabPaparan')">
+                    <i class="fas fa-clipboard-list"></i> Notulen
+                </button>
+            </div>
+
+            <div id="TabMateri" class="tab-content active">
+                
+                <div class="materi-item">
+                    <div class="materi-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="materi-info">
+                        <h4>Pleno 1. Evaluasi Survei Monev Program MBG 2025 BPS Se Sumatera Utara</h4>
+                    </div>
+                    <a href="https://docs.google.com/presentation/d/1NkVxzJ6X5GERdQcxhKzDsKS_BnX72Ew0/edit?slide=id.p1#slide=id.p1" class="btn-download">Download</a>
+                </div>
+
+                <div class="materi-item">
+                    <div class="materi-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="materi-info">
+                        <h4>Komisi 1. Materi baseline Komisi Rakor MBG Tahap 2</h4>
+                    </div>
+                    <a href="https://docs.google.com/presentation/d/1kGhfP9tiBeRsheUnhrYonexJf3uXT96O/edit?slide=id.p1#slide=id.p1" class="btn-download">Download</a>
+                </div>
+
+                <div class="materi-item">
+                    <div class="materi-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="materi-info">
+                        <h4>RO 2. Rakor Materi SE2026</h4>
+                    </div>
+                    <a href="https://docs.google.com/presentation/d/18tgIHalElZVePeFYdoBT8sjlSEx1JYZ8/edit?slide=id.p1#slide=id.p1" class="btn-download">Download</a>
+                </div>
+
+                <div class="materi-item">
+                    <div class="materi-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="materi-info">
+                        <h4>RO 4. Paparan IPEK Konser</h4>
+                    </div>
+                    <a href="https://docs.google.com/presentation/d/1gWZbVhHip0Vjoaa1sgxyCWMMIC_g4uJh/edit?usp=drive_link&ouid=111431225912981630557&rtpof=true&sd=true" class="btn-download">Download</a>
+                </div>
+
+                <div class="materi-item">
+                    <div class="materi-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="materi-info">
+                        <h4>RO 5. Evaluasi Tim Kesra 2025</h4>
+                    </div>
+                    <a href="https://docs.google.com/presentation/d/1vHOsVepNxjfsOUJHt3DkhpaW1ular_Hx/edit?usp=drive_web&ouid=111431225912981630557&rtpof=true" class="btn-download">Download</a>
+                </div>
+
+                <div class="materi-item">
+                    <div class="materi-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="materi-info">
+                        <h4>RO 6. Evaluasi PODES</h4>
+                    </div>
+                    <a href="https://docs.google.com/presentation/d/1juUxKodsRz3csh39g9NJwOFExbrw5go7/edit?usp=drive_link&ouid=111431225912981630557&rtpof=true&sd=true" class="btn-download">Download</a>
+                </div>
+
+                <div class="materi-item">
+                    <div class="materi-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="materi-info">
+                        <h4>RO 7. Evaluasi Statistik KTIP</h4>
+                    </div>
+                    <a href="https://docs.google.com/presentation/d/1fqOzq8atrNoNS3htrwxZ1A-S0FdbKwih/edit?usp=sharing&ouid=111431225912981630557&rtpof=true&sd=true" class="btn-download">Download</a>
+                </div>
+
+                <div class="materi-item">
+                    <div class="materi-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="materi-info">
+                        <h4>RO 8. Evaluasi Statistik Kehutanan</h4>
+                    </div>
+                    <a href="https://docs.google.com/presentation/d/1IXiwB6373OrC_3UYzRDpJtST0EW1ddxu/edit?usp=drive_link&ouid=111431225912981630557&rtpof=true&sd=true" class="btn-download">Download</a>
+                </div>
+
+                <div class="materi-item">
+                    <div class="materi-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="materi-info">
+                        <h4>RO 9. Evaluasi Statistik Hortikultura dan Perkebunan</h4>
+                    </div>
+                    <a href="https://docs.google.com/presentation/d/1go-kM0_67GKpF3dcK81xbSq74d9TCRvc/edit?usp=drive_link&ouid=111431225912981630557&rtpof=true&sd=true" class="btn-download">Download</a>
+                </div>
+
+            </div>
+
+            <div id="TabDokumentasi" class="tab-content">
+                <p>Galeri foto dan video kegiatan.</p>
+                <div class="gallery">
+                    <img src="https://via.placeholder.com/400x300/0ea5e9/ffffff?text=Dokumentasi+1" alt="Dokumentasi 1">
+                    <img src="https://via.placeholder.com/400x300/0284c7/ffffff?text=Dokumentasi+2" alt="Dokumentasi 2">
+                    <img src="https://via.placeholder.com/400x300/0ea5e9/ffffff?text=Dokumentasi+3" alt="Dokumentasi 3">
+                </div>
+            </div>
+
+            <div id="TabPaparan" class="tab-content">
+                <p>Notulen rapat evaluasi</p>
+                <ul>
+                    <li>---------------</li>
+                    <li>---------------</li>
+                </ul>
+            </div>
+
         </div>
+    </section>
 
-        <div id="TabMateri" class="tab-content active">
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('#nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = navMenu.contains(event.target);
+            const isClickOnHamburger = hamburger.contains(event.target);
             
-            <div class="materi-item">
-                <div class="materi-icon">📄</div>
-                <div class="materi-info">
-                    <h4>Pleno 1. Evaluasi Survei Monev Program MBG 2025 BPS Se Sumatera Utara</h4>
-                </div>
-                <a href="https://docs.google.com/presentation/d/1NkVxzJ6X5GERdQcxhKzDsKS_BnX72Ew0/edit?slide=id.p1#slide=id.p1" class="btn-download">Download</a>
-            </div>
+            if (!isClickInsideMenu && !isClickOnHamburger && navMenu.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
 
-            <div class="materi-item">
-                <div class="materi-icon">📄</div>
-                <div class="materi-info">
-                    <h4>Komisi 1. Materi baseline Komisi Rakor MBG Tahap 2</h4>
-                </div>
-                <a href="https://docs.google.com/presentation/d/1kGhfP9tiBeRsheUnhrYonexJf3uXT96O/edit?slide=id.p1#slide=id.p1" class="btn-download">Download</a>
-            </div>
-
-            <div class="materi-item">
-                <div class="materi-icon">📄</div>
-                <div class="materi-info">
-                    <h4>RO 2. Rakor Materi SE2026</h4>
-                </div>
-                <a href="https://docs.google.com/presentation/d/18tgIHalElZVePeFYdoBT8sjlSEx1JYZ8/edit?slide=id.p1#slide=id.p1" class="btn-download">Download</a>
-            </div>
-
-            <div class="materi-item">
-                <div class="materi-icon">📄</div>
-                <div class="materi-info">
-                    <h4>RO 4. Paparan IPEK Konser</h4>
-                </div>
-                <a href="https://docs.google.com/presentation/d/1gWZbVhHip0Vjoaa1sgxyCWMMIC_g4uJh/edit?usp=drive_link&ouid=111431225912981630557&rtpof=true&sd=true" class="btn-download">Download</a>
-            </div>
-
-            <div class="materi-item">
-                <div class="materi-icon">📄</div>
-                <div class="materi-info">
-                    <h4>RO 5. Evaluasi Tim Kesra 2025</h4>
-                </div>
-                <a href="https://docs.google.com/presentation/d/1vHOsVepNxjfsOUJHt3DkhpaW1ular_Hx/edit?usp=drive_web&ouid=111431225912981630557&rtpof=true" class="btn-download">Download</a>
-            </div>
-
-            <div class="materi-item">
-                <div class="materi-icon">📄</div>
-                <div class="materi-info">
-                    <h4>RO 6. Evaluasi PODES</h4>
-                </div>
-                <a href="https://docs.google.com/presentation/d/1juUxKodsRz3csh39g9NJwOFExbrw5go7/edit?usp=drive_link&ouid=111431225912981630557&rtpof=true&sd=true" class="btn-download">Download</a>
-            </div>
-
-            <div class="materi-item">
-                <div class="materi-icon">📄</div>
-                <div class="materi-info">
-                    <h4>RO 7. Evaluasi Statistik KTIP</h4>
-                </div>
-                <a href="https://docs.google.com/presentation/d/1fqOzq8atrNoNS3htrwxZ1A-S0FdbKwih/edit?usp=sharing&ouid=111431225912981630557&rtpof=true&sd=true" class="btn-download">Download</a>
-            </div>
-
-            <div class="materi-item">
-                <div class="materi-icon">📄</div>
-                <div class="materi-info">
-                    <h4>RO 8. Evaluasi Statistik Kehutanan</h4>
-                </div>
-                <a href="https://docs.google.com/presentation/d/1IXiwB6373OrC_3UYzRDpJtST0EW1ddxu/edit?usp=drive_link&ouid=111431225912981630557&rtpof=true&sd=true" class="btn-download">Download</a>
-            </div>
-
-            <div class="materi-item">
-                <div class="materi-icon">📄</div>
-                <div class="materi-info">
-                    <h4>RO 9. Evaluasi Statistik Hortikultura dan Perkebunan</h4>
-                </div>
-                <a href="https://docs.google.com/presentation/d/1go-kM0_67GKpF3dcK81xbSq74d9TCRvc/edit?usp=drive_link&ouid=111431225912981630557&rtpof=true&sd=true" class="btn-download">Download</a>
-            </div>
-
-            </div>
-
+        // Tab functionality
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
             
-
-            </div>
-
-        <div id="TabDokumentasi" class="tab-content">
-            <p>Galeri foto dan video kegiatan.</p>
-            <div class="gallery">
-                <img src="https://via.placeholder.com/200x150?text=Dokumentasi+1" alt="Dokumentasi 1">
-                <img src="https://via.placeholder.com/200x150?text=Dokumentasi+2" alt="Dokumentasi 2">
-                <img src="https://via.placeholder.com/200x150?text=Dokumentasi+3" alt="Dokumentasi 3">
-            </div>
-        </div>
-
-        <div id="TabPaparan" class="tab-content">
-            <p>Notulen rapat evaluasi</p>
-            <ul>
-                <li>---------------</li>
-                <li>---------------</li>
-            </ul>
-        </div>
-
-    </div>
-</section>
-
-<script>
-    // Fungsi JavaScript untuk Mengganti Tab
-    function openTab(evt, tabName) {
-        var i, tabcontent, tablinks;
-        
-        // Sembunyikan semua konten tab
-        tabcontent = document.getElementsByClassName("tab-content");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            
+            tablinks = document.getElementsByClassName("tab-link");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
         }
         
-        // Hapus class 'active' dari semua tombol tab
-        tablinks = document.getElementsByClassName("tab-link");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        
-        // Tampilkan konten tab yang dipilih, dan tambahkan class 'active' ke tombol
-        document.getElementById(tabName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-    
-    // Pastikan Tab Materi yang pertama aktif saat halaman dimuat
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("TabMateri").style.display = "block";
-        document.getElementsByClassName("tab-link")[0].className += " active";
-    });
-</script>
+        // Initialize first tab
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("TabMateri").style.display = "block";
+            document.getElementsByClassName("tab-link")[0].className += " active";
+        });
+    </script>
 
     <footer>
         <p>&copy; 2025 Badan Pusat Statistik Provinsi Sumatera Utara</p>

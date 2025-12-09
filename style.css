@@ -1,4 +1,8 @@
-/* --- RESET & VARIABEL DASAR --- */
+/* ========================================
+   MODERN RESPONSIVE CSS - MOBILE FIRST
+   ======================================== */
+
+/* --- RESET & BASE STYLES --- */
 * {
     margin: 0;
     padding: 0;
@@ -7,259 +11,342 @@
 }
 
 :root {
-    /* Tema Warna Biru Langit */
-    --biru-primer: #0ea5e9;       /* Biru Utama (Link/Border) */
-    --biru-sekunder: #0284c7;     /* Biru Tombol/Hover/Footer */
-    --biru-bg-muda: #e0f2fe;      /* Background Konten Sangat Muda */
-    
+    /* Color Palette */
+    --biru-primer: #0ea5e9;
+    --biru-sekunder: #0284c7;
+    --biru-dark: #0369a1;
+    --biru-bg-muda: #e0f2fe;
     --putih: #ffffff;
     --teks-hitam: #333333;
+    --teks-abu: #666666;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-hover: rgba(0, 0, 0, 0.15);
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    /* LATAR BELAKANG GAMBAR UNTUK SELURUH HALAMAN (Fixed Parallax) */
-    background-image: url('background-bps.png'); /* Pastikan nama file ini benar */
-    background-size: cover; 
-    background-repeat: no-repeat; 
+    background-image: url('background-bps.png');
+    background-size: cover;
+    background-repeat: no-repeat;
     background-position: center center;
-    background-attachment: fixed; /* PENTING: Membuat gambar tetap diam */
-    
-    background-color: var(--putih); /* Fallback */
+    background-attachment: fixed;
+    background-color: var(--putih);
     color: var(--teks-hitam);
     line-height: 1.6;
-    
-    /* PENTING: Margin atas untuk memberi ruang agar Header fixed tidak menutupi konten */
-    padding-top: 70px; 
+    padding-top: 70px;
+    overflow-x: hidden;
 }
 
 .container {
     width: 90%;
-    max-width: 1100px;
-    margin: auto;
-    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-sm);
 }
 
-/* --- HEADER / NAVBAR (FIXED & PUTIH TRANSPARAN) --- */
+/* --- HEADER / NAVBAR --- */
 header {
-    /* Background Putih dengan Transparansi 90% */
-    background-color: rgba(255, 255, 255, 0.9); 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-    
-    /* PENTING: Menempel di layar saat discroll */
-    position: fixed; 
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px var(--shadow);
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
+    transition: all 0.3s ease;
 }
 
 header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
+    padding: var(--spacing-sm);
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 3vw, 1.5rem);
     color: var(--biru-sekunder);
-    font-weight: 700; 
+    font-weight: 700;
+    z-index: 1001;
 }
 
+/* Hamburger Menu */
+.hamburger {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--biru-sekunder);
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Navigation */
 nav ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: var(--spacing-md);
 }
 
 nav a {
     text-decoration: none;
-    color: var(--teks-hitam); 
+    color: var(--teks-hitam);
     font-weight: 500;
-    transition: 0.3s;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--biru-primer);
+    transition: width 0.3s ease;
 }
 
 nav a:hover {
     color: var(--biru-primer);
 }
 
-/* --- HERO SECTION (HANYA OVERLAY) --- */
+nav a:hover::after {
+    width: 80%;
+}
+
+/* --- HERO SECTION --- */
 .hero {
-    /* LAPISAN OVERLAY SAJA: Gradien biru transparan di atas gambar body */
-    background: linear-gradient(rgba(14, 165, 233, 0.4), rgba(14, 165, 233, 0.2));
-    
-    height: 80vh; 
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.5), rgba(2, 132, 199, 0.3));
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 20px;
-    
-    color: var(--putih); 
+    padding: var(--spacing-lg);
+    color: var(--putih);
 }
 
 .hero-content {
-    max-width: 800px;
-    padding: 20px;
+    max-width: 900px;
+    padding: var(--spacing-md);
+    animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero h1 {
-    font-size: 3rem; 
-    color: var(--putih);
-    margin-bottom: 5px;
-    font-weight: 700; 
-    text-shadow: 0 4px 8px rgba(0,0,0,0.5);
-    
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 700;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1s ease 0.2s both;
 }
 
 .hero h2 {
-    font-size: 2rem;
-    color: #0c01d392; 
-    margin-bottom: 5px;
-    font-weight: bold;
-    text-shadow: 0 2px 4px rgba(248, 248, 248, 0.4);
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: #f0f9ff;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    animation: fadeInUp 1s ease 0.4s both;
 }
 
 .hero h3 {
-    font-size: 1.5rem;
-    color: #ffffff; 
-    margin-bottom: 40px;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    margin-bottom: var(--spacing-lg);
     font-weight: 400;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    animation: fadeInUp 1s ease 0.6s both;
 }
 
-/* Tombol Utama */
+/* Buttons */
 .btn-utama {
     display: inline-block;
-    background-color: var(--biru-sekunder);
+    background: linear-gradient(135deg, var(--biru-sekunder), var(--biru-dark));
     color: var(--putih);
-    padding: 15px 40px; 
-    border-radius: 5px;
+    padding: clamp(12px, 2vw, 15px) clamp(30px, 4vw, 45px);
+    border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
-    transition: 0.3s;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(2, 132, 199, 0.4);
+    animation: fadeInUp 1s ease 0.8s both;
 }
 
 .btn-utama:hover {
-    background-color: var(--biru-primer); 
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(2, 132, 199, 0.6);
+    background: linear-gradient(135deg, var(--biru-primer), var(--biru-sekunder));
 }
 
-/* --- MATERI & DOKUMENTASI SECTIONS (AGAR TEKS TERBACA DI ATAS GAMBAR FIXED) --- */
+/* --- SECTIONS --- */
 .section-materi {
-    padding: 60px 0;
-    /* Background putih transparan agar teks di atas gambar body tetap terbaca */
-    background-color: rgba(255, 255, 255, 0.7);
+    padding: clamp(40px, 8vw, 80px) 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
     text-align: center;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+    box-shadow: 0 0 30px var(--shadow);
 }
 
 .section-dokumentasi {
-    padding: 60px 0;
-    /* LAPISAN OVERLAY SAJA: Gradien biru transparan di atas gambar body */
-    background: linear-gradient(rgba(14, 165, 233, 0.4), rgba(14, 165, 233, 0.2));
+    padding: clamp(40px, 8vw, 80px) 0;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.5), rgba(2, 132, 199, 0.3));
     text-align: center;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+    box-shadow: 0 0 30px var(--shadow);
 }
 
-.section-materi h3, .section-dokumentasi h3 {
-    font-size: 2rem;
+.section-materi h3 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     color: var(--biru-sekunder);
-    margin-bottom: 30px;
-    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    font-weight: 700;
 }
 
-.section-materi h5, .section-dokumentasi h5 {
-    font-size: 2rem;
+.section-materi p {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    color: var(--teks-abu);
+    margin-bottom: var(--spacing-lg);
+}
+
+.section-dokumentasi h5 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     color: var(--putih);
-    margin-bottom: 30px;
-    font-weight: 600;
-    text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    margin-bottom: var(--spacing-md);
+    font-weight: 700;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+.section-dokumentasi p {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    color: #f0f9ff;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* --- GRID CARDS --- */
 .grid-materi {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
 }
-
-
 
 .card {
     background: var(--putih);
-    border: 1px solid #bae6fd;
-    padding: 25px;
-    border-radius: 10px;
-    width: 300px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+    border: 2px solid var(--biru-bg-muda);
+    padding: var(--spacing-lg);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px var(--shadow);
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
-
-
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px var(--shadow-hover);
+    border-color: var(--biru-primer);
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--biru-primer), var(--biru-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-md);
+    font-size: 1.5rem;
+    color: var(--putih);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+
+.card h4 {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: var(--biru-sekunder);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.card p {
+    color: var(--teks-abu);
+    margin-bottom: var(--spacing-md);
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
 .btn-download {
-    display: block;
-    margin-top: 15px;
-    padding: 10px;
+    display: inline-block;
+    padding: clamp(8px, 1.5vw, 12px) clamp(20px, 3vw, 30px);
     background-color: var(--putih);
     border: 2px solid var(--biru-primer);
     color: var(--biru-primer);
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-weight: 600;
-    transition: 0.3s;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    transition: all 0.3s ease;
 }
 
 .btn-download:hover {
-    background-color: var(--biru-primer);
+    background: linear-gradient(135deg, var(--biru-primer), var(--biru-dark));
     color: var(--putih);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4);
 }
 
-/* --- DOKUMENTASI GALLERY --- */
-.gallery {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.gallery img {
-    border-radius: 8px;
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    transition: transform 0.3s;
-    border: 3px solid var(--biru-bg-muda);
-}
-
-.gallery img:hover {
-    transform: scale(1.03);
-}
-
-/* --- FOOTER --- */
-footer {
-    background-color: var(--biru-sekunder);
-    color: var(--putih);
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9rem;
-}
-
-/* --- TAB NAVIGATION STYLE --- */
+/* --- TAB NAVIGATION --- */
 .tab-nav {
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #ddd;
-    
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: var(--spacing-sm);
 }
 
 .tab-link {
@@ -267,94 +354,268 @@ footer {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 25px;
-    transition: 0.3s;
-    font-size: 1.1rem;
-    color: var(--teks-hitam);
+    padding: clamp(10px, 2vw, 14px) clamp(15px, 3vw, 25px);
+    transition: all 0.3s ease;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
+    border-radius: 8px 8px 0 0;
+}
+
+.tab-link i {
+    margin-right: var(--spacing-xs);
 }
 
 .tab-link:hover {
-    color: var(--biru-primer);
+    color: var(--putih);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Style untuk tab yang aktif */
 .tab-link.active {
-    color: var(--biru-sekunder);
-    border-bottom: 3px solid var(--biru-sekunder);
+    color: var(--putih);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-bottom: 3px solid var(--putih);
     font-weight: 600;
 }
 
-/* --- TAB CONTENT STYLE --- */
+/* --- TAB CONTENT --- */
 .tab-content {
-    display: none; /* Semua konten disembunyikan secara default */
-    padding: 20px 0;
+    display: none;
+    padding: var(--spacing-md) 0;
+    animation: fadeIn 0.5s ease;
 }
 
-/* --- MATERI LIST ITEM STYLE (Untuk Tab Materi) --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* --- MATERI LIST --- */
 .materi-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--spacing-sm);
     background-color: var(--putih);
-    border: 1px solid #bae6fd;
-    padding: 15px 25px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    transition: 0.3s;
-    text-align: left;
+    border: 2px solid var(--biru-bg-muda);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow);
+    transition: all 0.3s ease;
+    flex-wrap: wrap;
 }
 
 .materi-item:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-hover);
+    transform: translateY(-3px);
+    border-color: var(--biru-primer);
 }
 
 .materi-icon {
-    font-size: 1.5rem;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
     color: var(--biru-primer);
-    margin-right: 15px;
+    min-width: 40px;
 }
 
 .materi-info {
-    flex-grow: 1; /* Memastikan info mengisi ruang di tengah */
+    flex: 1;
+    text-align: left;
+    min-width: 200px;
 }
 
 .materi-info h4 {
     margin: 0;
     color: var(--biru-sekunder);
-    font-size: 1rem;
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+    font-weight: 600;
 }
 
-.materi-info p {
-    margin: 0;
-    font-size: 0.85rem;
-    color: #888;
-}
-
-/* Sesuaikan tombol download agar sesuai dengan list item */
 .materi-item .btn-download {
-    padding: 8px 20px;
-    min-width: 120px;
-    font-size: 0.9rem;
-    display: inline-block;
+    padding: clamp(8px, 1.5vw, 10px) clamp(15px, 2.5vw, 25px);
+    font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+    white-space: nowrap;
 }
 
-/* --- GALLERY STYLE (Untuk Tab Dokumentasi) --- */
+/* --- GALLERY --- */
 .gallery {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
 }
 
 .gallery img {
-    border-radius: 8px;
+    border-radius: 12px;
     width: 100%;
-    max-width: 200px;
     height: auto;
     object-fit: cover;
-    border: 3px solid var(--biru-bg-muda);
+    transition: all 0.3s ease;
+    border: 4px solid var(--biru-bg-muda);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px var(--shadow-hover);
+    border-color: var(--biru-primer);
+}
+
+/* --- FOOTER --- */
+footer {
+    background: linear-gradient(135deg, var(--biru-sekunder), var(--biru-dark));
+    color: var(--putih);
+    text-align: center;
+    padding: var(--spacing-lg);
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    box-shadow: 0 -4px 20px var(--shadow);
+}
+
+/* ========================================
+   RESPONSIVE MEDIA QUERIES
+   ======================================== */
+
+/* Mobile - Small (< 480px) */
+@media (max-width: 479px) {
+    .hero h2 {
+        font-size: 1.2rem;
+    }
+    
+    .materi-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .materi-info {
+        text-align: center;
+    }
+    
+    .materi-item .btn-download {
+        width: 100%;
+    }
+}
+
+/* Mobile - Large (480px - 767px) */
+@media (max-width: 767px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    nav {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: calc(100vh - 70px);
+        background-color: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: -4px 0 20px var(--shadow);
+        transition: right 0.3s ease;
+        z-index: 999;
+    }
+    
+    nav.active {
+        right: 0;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        padding: var(--spacing-lg);
+        gap: 0;
+    }
+    
+    nav li {
+        width: 100%;
+        border-bottom: 1px solid var(--biru-bg-muda);
+    }
+    
+    nav a {
+        display: block;
+        padding: var(--spacing-md);
+        width: 100%;
+    }
+    
+    nav a::after {
+        display: none;
+    }
+    
+    nav a:hover {
+        background-color: var(--biru-bg-muda);
+    }
+}
+
+/* Tablet (768px - 1024px) */
+@media (min-width: 768px) {
+    .grid-materi {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .tab-nav {
+        gap: var(--spacing-sm);
+    }
+}
+
+/* Desktop - Small (1025px - 1199px) */
+@media (min-width: 1025px) {
+    .grid-materi {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Desktop - Large (>= 1200px) */
+@media (min-width: 1200px) {
+    .container {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+    
+    header .container {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+        padding: var(--spacing-xl) var(--spacing-sm);
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    header, .hamburger, .btn-utama, .btn-download, footer {
+        display: none;
+    }
+    
+    body {
+        background: white;
+        padding-top: 0;
+    }
+    
+    .section-materi, .section-dokumentasi {
+        background: white;
+        box-shadow: none;
+    }
 }
